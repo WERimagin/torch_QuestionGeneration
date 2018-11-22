@@ -16,4 +16,5 @@ module load openmpi
 #実行
 source ~/imagin/bin/activate
 source ~/.bash_profile
+echo $PATH
 th train.lua -config config-train

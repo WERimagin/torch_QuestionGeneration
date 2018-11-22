@@ -44,10 +44,12 @@ def main():
     word2embedding = {}
     dimension = None
     with open(args.embedding, "r") as input_file:
-        for line in input_file:
+        for i,line in tqdm(enumerate(input_file)):
             line = line.split()
             word2embedding[line[0]] = np.asarray(map(float, line[1 : ]))
             dimension = len(line) - 1
+            if i%100==0:
+                print(line[0],word2embedding[line[0]])
 
     with open(args.dict, "r") as input_file:
         words = [ line.split()[0] for line in input_file ]

@@ -21,6 +21,7 @@ npy4th = require 'npy4th'
 -- 840B.300d
 array = npy4th.loadnpy("qg.src.840B.300d.npy")
 print(array:size())
+print("here")
 torch.save("./embs/qg.src.840B.300d.t7", array)
 
 array = npy4th.loadnpy("qg.tgt.840B.300d.npy")

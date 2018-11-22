@@ -1,3 +1,7 @@
+##gloveを使った単語ベクトルの生成
+##python2に対して処理を行った(map)
+##glove.840.300dの処理を行った
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -53,8 +57,8 @@ def main():
             word2embedding[word] = np.asarray(list(map(float, vec)))
             #word2embedding[line[0]] = np.asarray(list(map(float, line[1 : ])))
             dimension = len(line) - 1
-            #if i%100==0:
-                #print(line[0],word2embedding[line[0]])
+            if i%30000==0:
+                print(line[0],word2embedding[line[0]])
 
     with open(args.dict, "r") as input_file:
         words = [ line.split()[0] for line in input_file ]

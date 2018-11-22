@@ -26,4 +26,4 @@ torch.save("./embs/qg.src.840B.300d.t7", array)
 array = npy4th.loadnpy("qg.tgt.840B.300d.npy")
 print(array:size())
 torch.save("./embs/qg.tgt.840B.300d.t7", array)
-
+print("now")

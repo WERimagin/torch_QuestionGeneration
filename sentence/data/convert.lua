@@ -1,3 +1,8 @@
+--npy4th,tdsなどはluarocks install npy4thでインストール
+--ファイルの場所問題。dataフォルダに移動しないとできない
+--embsフォルダを事前に作らないと動かない
+
+
 npy4th = require 'npy4th'
 
 -- 6B.300d
@@ -21,7 +26,6 @@ npy4th = require 'npy4th'
 -- 840B.300d
 array = npy4th.loadnpy("qg.src.840B.300d.npy")
 print(array:size())
-print("here")
 torch.save("./embs/qg.src.840B.300d.t7", array)
 
 array = npy4th.loadnpy("qg.tgt.840B.300d.npy")

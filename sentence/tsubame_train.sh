@@ -14,4 +14,5 @@ module load intel
 module load cuda
 module load openmpi
 #実行
+source ~/imagin/bin/activate
 th train.lua -config config-train

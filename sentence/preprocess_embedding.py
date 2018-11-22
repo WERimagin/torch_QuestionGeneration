@@ -46,7 +46,12 @@ def main():
     with open(args.embedding, "r") as input_file:
         for i,line in tqdm(enumerate(input_file)):
             line = line.split()
-            word2embedding[line[0]] = np.asarray(list(map(float, line[1 : ])))
+            #一番上を単語とすると、. . .みたいなスペース混じりを処理できない。
+            #よって下から300番目までをベクトルの数値として扱う
+            word=" ".join(line[:-300])
+            vec=line[-300:]
+            word2embedding[word] = np.asarray(list(map(float, vec)))
+            #word2embedding[line[0]] = np.asarray(list(map(float, line[1 : ])))
             dimension = len(line) - 1
             #if i%100==0:
                 #print(line[0],word2embedding[line[0]])

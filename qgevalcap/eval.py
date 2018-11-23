@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#__author__ = 'xinya'
+__author__ = 'xinya'
 
 from bleu.bleu import Bleu
 from meteor.meteor import Meteor
@@ -47,24 +47,30 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
 
         isDin: boolean value to check whether input file is DirectIn.txt
     """
+    #pairs:リスト、サイズはlen(sentence)、中身はpair
+    #pair:sentence,question,predicionが辞書の形で格納されている。
+
 
     pairs = []
     with open(src_file, 'r') as infile:
         for line in infile:
             pair = {}
-            pair['tokenized_sentence'] = line[:-1]
+            pair['tokenized_sentence'] = line
+            #pair['tokenized_sentence'] = line[:-1]
             pairs.append(pair)
 
     with open(tgt_file, "r") as infile:
         cnt = 0
         for line in infile:
-            pairs[cnt]['tokenized_question'] = line[:-1]
+            pairs[cnt]['tokenized_question'] = line
+            #pairs[cnt]['tokenized_question'] = line[:-1]
             cnt += 1
 
     output = []
     with open(out_file, 'r') as infile:
         for line in infile:
-            line = line[:-1]
+            line = line
+            #line = line[:-1]
             output.append(line)
 
 
@@ -78,6 +84,9 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
     from json import encoder
     encoder.FLOAT_REPR = lambda o: format(o, '.4f')
 
+    #res:key:sentence,value:prediction
+    #gts:key:sentence,value:question
+    #ただし、gtsの方は同じsentenceについては複数のquestionを一つのsentenceに与える
     res = defaultdict(lambda: [])
     gts = defaultdict(lambda: [])
     for pair in pairs[:]:
@@ -99,3 +108,5 @@ if __name__ == "__main__":
 
     print "scores: \n"
     eval(args.out_file, args.src_file, args.tgt_file)
+
+#python eval.py --out_file ../sentence/pred.txt --src_file ../data/processed/src-dev.txt --tgt_file ../data/processed/tgt-val.txt

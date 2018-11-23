@@ -9,7 +9,7 @@ from collections import defaultdict
 from argparse import ArgumentParser
 
 import sys
-reload(sys)
+#reload(sys)
 sys.setdefaultencoding('utf-8')
 
 class QGEvalCap:

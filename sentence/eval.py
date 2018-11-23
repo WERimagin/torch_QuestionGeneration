@@ -35,4 +35,4 @@ for t,p in tqdm(zip(target,predict)):
     score_sum_bleu2+=score
 
 print(score_sum_bleu1/len(target),len(target))
-print(score_sum_blue2/len(target),len(target))
+print(score_sum_bleu2/len(target),len(target))

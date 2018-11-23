@@ -7,10 +7,14 @@ from rouge.rouge import Rouge
 from cider.cider import Cider
 from collections import defaultdict
 from argparse import ArgumentParser
-
+"""
 import sys
-#reload(sys)
+reload(sys)
 sys.setdefaultencoding('utf-8')
+"""
+import importlib
+importlib.reload(sys)
+sys.setdefaultencoding('cp932')
 
 class QGEvalCap:
     def __init__(self, gts, res):

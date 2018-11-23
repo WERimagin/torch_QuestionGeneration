@@ -22,8 +22,8 @@ class QGEvalCap:
         output = []
         scorers = [
             (Bleu(4), ["Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4"]),
-            (Meteor(),"METEOR"),
-            (Rouge(), "ROUGE_L"),
+            (Meteor(),"METEOR")
+            #(Rouge(), "ROUGE_L"),
             # (Cider(), "CIDEr")
         ]
 
@@ -110,4 +110,4 @@ if __name__ == "__main__":
     print("scores: \n")
     eval(args.out_file, args.src_file, args.tgt_file)
 
-#python eval.py --out_file ../sentence/pred.txt --src_file ../data/processed/src-dev.txt --tgt_file ../data/processed/tgt-val.txt
+#python eval.py --out_file ../sentence/pred.txt --src_file ../data/processed/src-dev.txt --tgt_file ../data/processed/tgt-dev.txt

@@ -7,11 +7,10 @@ from rouge.rouge import Rouge
 from cider.cider import Cider
 from collections import defaultdict
 from argparse import ArgumentParser
-"""
+
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-"""
 
 class QGEvalCap:
     def __init__(self, gts, res):
@@ -21,9 +20,9 @@ class QGEvalCap:
     def evaluate(self):
         output = []
         scorers = [
-            (Bleu(4), ["Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4"])
-            #(Meteor(),"METEOR")
-            #(Rouge(), "ROUGE_L"),
+            (Bleu(4), ["Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4"]),
+            (Meteor(),"METEOR"),
+            (Rouge(), "ROUGE_L"),
             # (Cider(), "CIDEr")
         ]
 
@@ -35,10 +34,10 @@ class QGEvalCap:
             score, scores = scorer.compute_score(self.gts, self.res)
             if type(method) == list:
                 for sc, scs, m in zip(score, scores, method):
-                    print("%s: %0.5f"%(m, sc))
+                    print "%s: %0.5f"%(m, sc)
                     output.append(sc)
             else:
-                print("%s: %0.5f"%(method, score))
+                print "%s: %0.5f"%(method, score)
                 output.append(score)
         return output
 
@@ -56,22 +55,19 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
     with open(src_file, 'r') as infile:
         for line in infile:
             pair = {}
-            pair['tokenized_sentence'] = line
-            #pair['tokenized_sentence'] = line[:-1]
+            pair['tokenized_sentence'] = line[:-1]
             pairs.append(pair)
 
     with open(tgt_file, "r") as infile:
         cnt = 0
         for line in infile:
-            pairs[cnt]['tokenized_question'] = line
-            #pairs[cnt]['tokenized_question'] = line[:-1]
+            pairs[cnt]['tokenized_question'] = line[:-1]
             cnt += 1
 
     output = []
     with open(out_file, 'r') as infile:
         for line in infile:
-            line = line
-            #line = line[:-1]
+            line = line[:-1]
             output.append(line)
 
 
@@ -87,7 +83,7 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
 
     #res:key:sentence,value:prediction
     #gts:key:sentence,value:question
-    #ただし、gtsの方は同じsentenceについては複数のquestionを一つのsentenceに与える
+    #ただし、gtsの方は同じsentenceについてはquestionを一つのsentenceに与える
     res = defaultdict(lambda: [])
     gts = defaultdict(lambda: [])
     for pair in pairs[:]:
@@ -107,7 +103,5 @@ if __name__ == "__main__":
     parser.add_argument("-tgt", "--tgt_file", dest="tgt_file", default="../data/processed/tgt-test.txt", help="target file")
     args = parser.parse_args()
 
-    print("scores: \n")
+    print "scores: \n"
     eval(args.out_file, args.src_file, args.tgt_file)
-
-#python eval.py --out_file ../sentence/pred.txt --src_file ../data/processed/src-dev.txt --tgt_file ../data/processed/tgt-dev.txt

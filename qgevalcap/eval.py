@@ -106,7 +106,7 @@ if __name__ == "__main__":
     parser.add_argument("-tgt", "--tgt_file", dest="tgt_file", default="../data/processed/tgt-test.txt", help="target file")
     args = parser.parse_args()
 
-    print "scores: \n"
+    print("scores: \n")
     eval(args.out_file, args.src_file, args.tgt_file)
 
 #python eval.py --out_file ../sentence/pred.txt --src_file ../data/processed/src-dev.txt --tgt_file ../data/processed/tgt-val.txt

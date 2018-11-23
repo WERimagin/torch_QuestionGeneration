@@ -57,8 +57,7 @@ def main():
             word2embedding[word] = np.asarray(list(map(float, vec)))
             #word2embedding[line[0]] = np.asarray(list(map(float, line[1 : ])))
             dimension = len(line) - 1
-            if i%30000==0:
-                print(line[0],word2embedding[line[0]])
+
 
     with open(args.dict, "r") as input_file:
         words = [ line.split()[0] for line in input_file ]

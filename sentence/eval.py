@@ -18,15 +18,15 @@ predict=[]
 
 with open(src_path)as f:
     for line in f:
-        src.append(line)
+        src.append(line[:-1])
 
 with open(tgt_path)as f:
     for line in f:
-        target.append(line)
+        target.append(line[:-1])
 
 with open(pred_path)as f:
     for line in f:
-        predict.append(line)
+        predict.append(line[:-1])
 
 target_dict=defaultdict(lambda: [])
 predict_dict=defaultdict(str)

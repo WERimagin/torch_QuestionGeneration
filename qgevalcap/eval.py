@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-__author__ = 'xinya'
+#__author__ = 'xinya'
 
 from bleu.bleu import Bleu
 from meteor.meteor import Meteor
@@ -84,7 +84,7 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
         key = pair['tokenized_sentence']
         res[key] = [pair['prediction'].encode('utf-8')]
 
-        ## gts 
+        ## gts
         gts[key].append(pair['tokenized_question'].encode('utf-8'))
 
     QGEval = QGEvalCap(gts, res)
@@ -99,5 +99,3 @@ if __name__ == "__main__":
 
     print "scores: \n"
     eval(args.out_file, args.src_file, args.tgt_file)
-
-

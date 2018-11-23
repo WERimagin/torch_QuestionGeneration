@@ -1,6 +1,6 @@
-train_src=../data/processed/src-train.txt 
+train_src=../data/processed/src-train-modify.txt
 train_tgt=../data/processed/tgt-train.txt
-valid_src=../data/processed/src-dev.txt
+valid_src=../data/processed/src-dev-modify.txt
 valid_tgt=../data/processed/tgt-dev.txt
 save_data=./data/qg
 src_vocab_size=45000

@@ -26,8 +26,8 @@ def precook(s, n=4, out=False):
     can take string arguments as well."""
     words = s.split()
     counts = defaultdict(int)
-    for k in xrange(1,n+1):
-        for i in xrange(len(words)-k+1):
+    for k in range(1,n+1):
+        for i in range(len(words)-k+1):
             ngram = tuple(words[i:i+k])
             counts[ngram] += 1
     return (len(words), counts)
@@ -84,7 +84,7 @@ def cook_test(test, tuple_c, eff=None, n=4):
 
     result["testlen"] = testlen
 
-    result["guess"] = [max(0,testlen-k+1) for k in xrange(1,n+1)]
+    result["guess"] = [max(0,testlen-k+1) for k in range(1,n+1)]
 
     result['correct'] = [0]*n
     for (ngram, count) in counts.iteritems():
@@ -234,18 +234,18 @@ class BleuScorer(object):
             self._reflen += reflen
 
             for key in ['guess','correct']:
-                for k in xrange(n):
+                for k in (n):
                     totalcomps[key][k] += comps[key][k]
 
             # append per image bleu score
             bleu = 1.
-            for k in xrange(n):
+            for k in range(n):
                 bleu *= (float(comps['correct'][k]) + tiny) \
                         /(float(comps['guess'][k]) + small)
                 bleu_list[k].append(bleu ** (1./(k+1)))
             ratio = (testlen + tiny) / (reflen + small) ## N.B.: avoid zero division
             if ratio < 1:
-                for k in xrange(n):
+                for k in range(n):
                     bleu_list[k][-1] *= math.exp(1 - 1/ratio)
 
             if verbose > 1:
@@ -256,13 +256,13 @@ class BleuScorer(object):
 
         bleus = []
         bleu = 1.
-        for k in xrange(n):
+        for k in range(n):
             bleu *= float(totalcomps['correct'][k] + tiny) \
                     / (totalcomps['guess'][k] + small)
             bleus.append(bleu ** (1./(k+1)))
         ratio = (self._testlen + tiny) / (self._reflen + small) ## N.B.: avoid zero division
         if ratio < 1:
-            for k in xrange(n):
+            for k in range(n):
                 bleus[k] *= math.exp(1 - 1/ratio)
 
         if verbose > 0:

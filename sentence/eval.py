@@ -44,7 +44,7 @@ for s in src:
     p=predict_dict[s]
     score = sentence_bleu(t,p,weights=(1,0,0,0))
     score_sum_bleu1+=score
-    print(t,p,score)
+    #print(t,p,score)
     score = sentence_bleu(t,p,weights=(0,1,0,0))
     score_sum_bleu2+=score
 

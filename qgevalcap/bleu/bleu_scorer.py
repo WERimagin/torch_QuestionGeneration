@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # bleu_scorer.py
 # David Chiang <chiang@isi.edu>
@@ -106,12 +107,14 @@ class BleuScorer(object):
         self.cook_append(test, refs)
         self.special_reflen = special_reflen
 
+    #test,refsを受け取り、n-gramを計算
     def cook_append(self, test, refs):
         '''called by constructor and __iadd__ to avoid creating new instances.'''
 
         if refs is not None:
             self.crefs.append(cook_refs(refs))
             if test is not None:
+                #print(type(test),len(test),test,self.crefs[-1])
                 cooked_test = cook_test(test, self.crefs[-1])
                 self.ctest.append(cooked_test) ## N.B.: -1
             else:
@@ -209,8 +212,16 @@ class BleuScorer(object):
 
         self._testlen = 0
         self._reflen = 0
+        #testlen:predict側の文の長さの合計？
+        #reflen:target側の文の長さの合計？
+        #testlen/reflenがペナルティ
+        #correct:一致するn-gramの数
+        #guess:predict側のn-gramの数
+        #correct/guess
         totalcomps = {'testlen':0, 'reflen':0, 'guess':[0]*n, 'correct':[0]*n}
 
+
+        #self.ctest:totalcompsを文ごとにしたもの。
         # for each sentence
         for comps in self.ctest:
             testlen = comps['testlen']
@@ -246,11 +257,16 @@ class BleuScorer(object):
 
         bleus = []
         bleu = 1.
+        print(totalcomps['correct'])
+        print(totalcomps['guess'])
+        #for bleu method(n=4)
+        #この段階でtotalcompsで既に計算済み,あとは処理するだけ
         for k in xrange(n):
             bleu *= float(totalcomps['correct'][k] + tiny) \
                     / (totalcomps['guess'][k] + small)
             bleus.append(bleu ** (1./(k+1)))
         ratio = (self._testlen + tiny) / (self._reflen + small) ## N.B.: avoid zero division
+        print(ratio)
         if ratio < 1:
             for k in xrange(n):
                 bleus[k] *= math.exp(1 - 1/ratio)
@@ -260,4 +276,5 @@ class BleuScorer(object):
             print "ratio:", ratio
 
         self._score = bleus
+        print(self._score,len(bleu_list))
         return self._score, bleu_list

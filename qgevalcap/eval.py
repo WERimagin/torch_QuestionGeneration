@@ -75,6 +75,7 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
     for idx, pair in enumerate(pairs):
         pair['prediction'] = output[idx]
 
+    print len(pairs),len(output),
 
     ## eval
     from eval import QGEvalCap
@@ -99,7 +100,7 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-out", "--out_file", dest="out_file", default="../sentence/pred.txt", help="output file to compare")
+    parser.add_argument("-out", "--out_file", dest="out_file", default="pred.txt", help="output file to compare")
     parser.add_argument("-src", "--src_file", dest="src_file", default="../data/processed/src-dev.txt", help="src file")
     parser.add_argument("-tgt", "--tgt_file", dest="tgt_file", default="../data/processed/tgt-dev.txt", help="target file")
     args = parser.parse_args()

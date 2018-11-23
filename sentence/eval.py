@@ -10,7 +10,7 @@ from collections import defaultdict
 #pred_path="pred_test.txt"
 src_path="../data/processed/src-dev.txt"
 tgt_path="../data/processed/tgt-dev.txt"
-pred_path="pred.txt"
+pred_path="../data/pred.txt"
 
 src=[]
 target=[]
@@ -39,7 +39,7 @@ print("size:{}\n".format(len(target)))
 
 score_sum_bleu1=0
 score_sum_bleu2=0
-for s in src:
+for s in tqdm(src):
     t=target_dict[s]
     p=predict_dict[s]
     score = sentence_bleu(t,p,weights=(1,0,0,0))

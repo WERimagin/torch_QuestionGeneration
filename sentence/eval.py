@@ -26,9 +26,13 @@ predict=[word_tokenize(sent) for sent in predict]
 
 print("size:{}\n".format(len(target)))
 
-score_sum=0
+score_sum_bleu1=0
+score_sum_bleu2=0
 for t,p in tqdm(zip(target,predict)):
-    score = sentence_bleu([t],p)
-    score_sum+=score
+    score = sentence_bleu([t],p,weights=(1,0,0,0))
+    score_sum_bleu1+=score
+    score = sentence_bleu([t],p,weights=(0,1,0,0))
+    score_sum_bleu2+=score
 
-print(score_sum/len(target),len(target))
+print(score_sum_bleu1/len(target),len(target))
+print(score_sum_blue2/len(target),len(target))

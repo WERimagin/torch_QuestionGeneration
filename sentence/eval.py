@@ -12,6 +12,7 @@ src_path="../data/processed/src-dev.txt"
 tgt_path="../data/processed/tgt-dev.txt"
 pred_path="pred.txt"
 
+src=[]
 target=[]
 predict=[]
 

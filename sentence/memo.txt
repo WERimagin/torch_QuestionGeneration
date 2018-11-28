@@ -1,0 +1,4 @@
+python preprocess_embedding.py --embedding  ~/data/glove.840B.300d.txt --dict ./data/qg.src.dict --output ./data/qg.src.840B.300d.npy
+python preprocess_embedding.py --embedding  ~/data/glove.840B.300d.txt --dict ./data/qg.tgt.dict --output ./data/qg.tgt.840B.300d.npy
+
+th ./data/convert.lua

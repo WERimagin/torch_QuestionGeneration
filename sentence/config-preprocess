@@ -1,7 +1,7 @@
-train_src=../data/processed/src-train-modify.txt
-train_tgt=../data/processed/tgt-train.txt
-valid_src=../data/processed/src-dev-modify.txt
-valid_tgt=../data/processed/tgt-dev.txt
+train_src=../data/squad-src-train-normal.txt
+train_tgt=../data/squad-tgt-train-normal.txt
+valid_src=../data/squad-src-dev-normal.txt
+valid_tgt=../data/squad-tgt-dev-normal.txt
 save_data=./data/qg
 src_vocab_size=45000
 tgt_vocab_size=28000

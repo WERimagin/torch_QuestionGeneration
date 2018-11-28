@@ -110,7 +110,9 @@ class BleuScorer(object):
     #test,refsを受け取り、n-gramを計算
     def cook_append(self, test, refs):
         '''called by constructor and __iadd__ to avoid creating new instances.'''
-
+        #ctest:
+        #reflen:refの文の長さの一覧
+        #testlen:testの文の長さ
         if refs is not None:
             self.crefs.append(cook_refs(refs))
             if test is not None:
@@ -119,6 +121,7 @@ class BleuScorer(object):
                 self.ctest.append(cooked_test) ## N.B.: -1
             else:
                 self.ctest.append(None) # lens of crefs and ctest have to match
+
 
         self._score = None ## need to recompute
 
@@ -223,14 +226,20 @@ class BleuScorer(object):
 
         #self.ctest:totalcompsを文ごとにしたもの。
         # for each sentence
-        for comps in self.ctest:
+        #optionによるが今回はclosestなので、refの中でtestと一番近いものをreflenとして出力
+        p_list=[]
+        s_count=0
+        for i,comps in enumerate(self.ctest):
             testlen = comps['testlen']
             self._testlen += testlen
 
             if self.special_reflen is None: ## need computation
                 reflen = self._single_reflen(comps['reflen'], option, testlen)
+                s_count+=1
+                #print(reflen,comps["reflen"])
             else:
                 reflen = self.special_reflen
+            p_list.append(reflen)
 
             self._reflen += reflen
 
@@ -252,6 +261,10 @@ class BleuScorer(object):
             if verbose > 1:
                 print comps, reflen
 
+        print(s_count)
+        print(sum(sorted(p_list)[:-100:-1]))
+        print(len(p_list))
+
         totalcomps['reflen'] = self._reflen
         totalcomps['testlen'] = self._testlen
 
@@ -259,6 +272,7 @@ class BleuScorer(object):
         bleu = 1.
         print(totalcomps['correct'])
         print(totalcomps['guess'])
+        print(self._testlen,self._reflen)
         #for bleu method(n=4)
         #この段階でtotalcompsで既に計算済み,あとは処理するだけ
         for k in xrange(n):

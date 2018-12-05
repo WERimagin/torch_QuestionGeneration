@@ -33,6 +33,7 @@ class QGEvalCap:
         for scorer, method in scorers:
             # print 'computing %s score...'%(scorer.method())
             score, scores = scorer.compute_score(self.gts, self.res)
+            print(score)
             if type(method) == list:
                 for sc, scs, m in zip(score, scores, method):
                     print "%s: %0.5f"%(m, sc)
@@ -49,7 +50,7 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
         isDin: boolean value to check whether input file is DirectIn.txt
     """
     #pairs:リスト、サイズはlen(sentence)、中身はpair
-    #pair:sentence,question,predicionが辞書の形で格納されている。
+    #pair:sentence,question_target,question_predictが辞書の形で格納されている。
 
 
     pairs = []
@@ -75,7 +76,6 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
     for idx, pair in enumerate(pairs):
         pair['prediction'] = output[idx]
 
-    #print len(pairs),len(output),
 
     ## eval
     from eval import QGEvalCap
@@ -86,23 +86,23 @@ def eval(out_file, src_file, tgt_file, isDIn = False, num_pairs = 500):
     #res:key:sentence,value:prediction
     #gts:key:sentence,value:question
     #ただし、gtsの方は同じsentenceについてはquestionを一つのsentenceに与える
+    #また、一つの文につき一つのpredictしか評価していない。->10000文の内4000文は評価していない。
     res = defaultdict(lambda: [])
     gts = defaultdict(lambda: [])
     for i,pair in enumerate(pairs[:]):
         key = pair['tokenized_sentence']
         res[key] = [pair['prediction'].encode('utf-8')]
-
-        ## gts
         gts[key].append(pair['tokenized_question'].encode('utf-8'))
 
-    #print(list(res.items())[0:10])
+    print(len(pairs))
+    print(len(res.items()))
 
     QGEval = QGEvalCap(gts, res)
     return QGEval.evaluate()
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-out", "--out_file", dest="out_file", default="../data/pred.txt", help="output file to compare")
+    parser.add_argument("-out", "--out_file", dest="out_file", default="../data/pred_modify.txt", help="output file to compare")
     parser.add_argument("-src", "--src_file", dest="src_file", default="../data/processed/src-dev.txt", help="src file")
     parser.add_argument("-tgt", "--tgt_file", dest="tgt_file", default="../data/processed/tgt-dev.txt", help="target file")
     args = parser.parse_args()

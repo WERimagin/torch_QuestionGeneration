@@ -262,8 +262,8 @@ class BleuScorer(object):
                 print comps, reflen
 
         print(s_count)
-        print(sum(sorted(p_list)[:-100:-1]))
-        print(len(p_list))
+        print("sum_top100:{}".format(sum(sorted(p_list)[:-100:-1])))
+        print("len_p_list:{}".format(len(p_list)))
 
         totalcomps['reflen'] = self._reflen
         totalcomps['testlen'] = self._testlen
@@ -279,8 +279,9 @@ class BleuScorer(object):
             bleu *= float(totalcomps['correct'][k] + tiny) \
                     / (totalcomps['guess'][k] + small)
             bleus.append(bleu ** (1./(k+1)))
+            print(bleu,bleu ** (1./(k+1)))
+            print(totalcomps['correct'][k],totalcomps['guess'][k])
         ratio = (self._testlen + tiny) / (self._reflen + small) ## N.B.: avoid zero division
-        print(ratio)
         if ratio < 1:
             for k in xrange(n):
                 bleus[k] *= math.exp(1 - 1/ratio)
@@ -290,5 +291,6 @@ class BleuScorer(object):
             print "ratio:", ratio
 
         self._score = bleus
+        print(bleus)
         print(self._score,len(bleu_list))
         return self._score, bleu_list

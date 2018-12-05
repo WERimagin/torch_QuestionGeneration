@@ -1,7 +1,7 @@
-train_src=../data/squad-src-train-normal.txt
-train_tgt=../data/squad-tgt-train-normal.txt
-valid_src=../data/squad-src-dev-normal.txt
-valid_tgt=../data/squad-tgt-dev-normal.txt
+train_src=../data/squad-src-train-interro_answer.txt
+train_tgt=../data/squad-tgt-train-interro_answer.txt
+valid_src=../data/squad-src-dev-interro_answer.txt
+valid_tgt=../data/squad-tgt-dev-interro_answer.txt
 save_data=./data/qg
 src_vocab_size=45000
 tgt_vocab_size=28000

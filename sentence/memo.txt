@@ -13,6 +13,8 @@ cd data
 
 th convert.lua
 
+cd ..
+
 th train.lua -config config-train
 
 th translate.lua -model model/840B.300d.600rnn_epoch15_19.88.t7 -config config-trans

@@ -1,8 +1,8 @@
-train_src=../data/squad-src-train-interro.txt
-train_tgt=../data/squad-tgt-train-interro.txt
-valid_src=../data/squad-src-dev-interro.txt
-valid_tgt=../data/squad-tgt-dev-interro.txt
+train_src=../data/squad-src-train-paragraph_interro.txt
+train_tgt=../data/squad-tgt-train-paragraph_interro.txt
+valid_src=../data/squad-src-dev-paragraph_interro.txt
+valid_tgt=../data/squad-tgt-dev-paragraph_interro.txt
 save_data=./data/qg
 src_vocab_size=45000
 tgt_vocab_size=28000
-src_seq_length=120
+src_seq_length=600

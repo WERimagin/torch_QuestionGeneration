@@ -1,4 +1,5 @@
 src=../data/squad-src-dev-interro_history.txt
-beam_size=3
+beam_size=5
+n_best=5
 gpuid=1
 replace_unk=true

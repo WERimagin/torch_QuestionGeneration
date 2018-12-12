@@ -5,4 +5,4 @@ valid_tgt=../data/squad-tgt-dev-interro_history.txt
 save_data=./data/qg
 src_vocab_size=45000
 tgt_vocab_size=28000
-src_seq_length=600
+src_seq_length=100

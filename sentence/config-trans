@@ -1,4 +1,4 @@
-src=../data/squad-src-dev-paragraph_interro.txt
+src=../data/squad-src-dev-interro_history.txt
 beam_size=3
 gpuid=1
 replace_unk=true

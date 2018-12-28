@@ -18,8 +18,3 @@ cd ..
 th train.lua -config config-train
 
 th translate.lua -model model/840B.300d.600rnn_epoch15_19.88.t7 -config config-trans
-
-
-840B.300d.600rnn_epoch10_3.65.t7  840B.300d.600rnn_epoch1_8.33.t7  840B.300d.600rnn_epoch4_4.41.t7  840B.300d.600rnn_epoch7_3.76.t7  old
-840B.300d.600rnn_epoch11_3.64.t7  840B.300d.600rnn_epoch2_5.58.t7  840B.300d.600rnn_epoch5_4.13.t7  840B.300d.600rnn_epoch8_3.67.t7
-840B.300d.600rnn_epoch12_3.64.t7  840B.300d.600rnn_epoch3_4.60.t7  840B.300d.600rnn_epoch6_4.17.t7  840B.300d.600rnn_epoch9_3.66.t7

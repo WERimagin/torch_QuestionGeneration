@@ -1,7 +1,7 @@
 data=data/qg-train.t7
 save_model=model/840B.300d.600rnn
 gpuid=1
-epochs=12
+epochs=10
 brnn=true
 brnn_merge=concat
 dropout=0.3

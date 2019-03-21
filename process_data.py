@@ -163,7 +163,6 @@ if __name__ == "__main__":
     #main
     random.seed(0)
 
-
     data_process(input_path="data/squad-train-v1.1.json",
                 output_path="data/train_data.json",
                 train=True

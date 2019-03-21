@@ -30,9 +30,6 @@ import nltk
 import datetime
 import os
 
-
-
-
 #epochあたりの学習
 def model_handler(args,data,train=True,data_kind="train"):
     start=time.time()

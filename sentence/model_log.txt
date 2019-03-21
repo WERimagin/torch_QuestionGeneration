@@ -1,0 +1,7 @@
+Dec  5 22:12 840B.300d.600rnn_epoch10_3.68.t7:interro+answer
+
+Dec  7 00:11 840B.300d.600rnn_epoch12_3.64.t7:interro
+
+Dec 10 11:49 840B.300d.600rnn_epoch12_4.95.t7:paragraph+interro
+
+Dec 12 21:19 840B.300d.600rnn_epoch15_1.20.t7:interro+history

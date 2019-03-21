@@ -1,0 +1,20 @@
+th preprocess.lua -config config-preprocess
+
+python preprocess_embedding.py \
+--embedding  ~/data/glove.840B.300d.txt \
+--dict ./data/qg.src.dict \
+--output ./data/qg.src.840B.300d.npy
+python preprocess_embedding.py \
+--embedding  ~/data/glove.840B.300d.txt \
+--dict ./data/qg.tgt.dict \
+--output ./data/qg.tgt.840B.300d.npy
+
+cd data
+
+th convert.lua
+
+cd ..
+
+th train.lua -config config-train
+
+th translate.lua -model model/840B.300d.600rnn_epoch15_19.88.t7 -config config-trans
